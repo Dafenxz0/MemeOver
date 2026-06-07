@@ -18,7 +18,7 @@ import { UpdateChecker } from "@/windows/settings/components/update-checker";
 // ─── Component ────────────────────────────────────────────────────────────────
 
 export function AboutPage() {
-	const { t, i18n } = useTranslation();
+	const { t } = useTranslation();
 
 	const { data: appVersion } = useQuery({
 		queryKey: ["app-version"],
@@ -26,13 +26,7 @@ export function AboutPage() {
 		staleTime: Number.POSITIVE_INFINITY,
 	});
 
-	const isFrench = i18n.language.startsWith("fr");
-	const privacyUrl = isFrench
-		? "https://memeover.simonhazard.com/fr/confidentialite"
-		: "https://memeover.simonhazard.com/privacy";
-	const legalUrl = isFrench
-		? "https://memeover.simonhazard.com/fr/mentions-legales"
-		: "https://memeover.simonhazard.com/legal";
+	const legalUrl = "https://memeover.simonhazard.com/legal/";
 
 	async function handleClearLocalHistory() {
 		try {
@@ -99,7 +93,7 @@ export function AboutPage() {
 								<li>{t("about.privacyHosted")}</li>
 							</ul>
 							<div className="flex flex-wrap gap-2">
-								<NbButton size="sm" variant="outline" onClick={() => openUrl(privacyUrl)}>
+								<NbButton size="sm" variant="outline" onClick={() => openUrl(legalUrl)}>
 									<FileText className="size-3.5" aria-hidden="true" />
 									{t("about.privacyPolicy")}
 								</NbButton>
